@@ -1,0 +1,7 @@
+C:\Users\beluc\Source\Repos\NewRepo\erp\TC.Platform-UAM\TC.Platform-UAM.DataAccess\obj\Debug\TC.Platform-UAM.DataAccess.dll
+C:\Users\beluc\Source\Repos\NewRepo\erp\TC.Platform-UAM\TC.Platform-UAM.DataAccess\obj\Debug\TC.Platform-UAM.DataAccess.pdb
+C:\Users\beluc\Source\Repos\NewRepo\erp\Vacations\Vacations.DataAccess\bin\Debug\Vacations.DataAccess.dll.config
+C:\Users\beluc\Source\Repos\NewRepo\erp\Vacations\Vacations.DataAccess\bin\Debug\Vacations.DataAccess.dll
+C:\Users\beluc\Source\Repos\NewRepo\erp\Vacations\Vacations.DataAccess\bin\Debug\Vacations.DataAccess.pdb
+C:\Users\beluc\Source\Repos\NewRepo\erp\Vacations\Vacations.DataAccess\obj\Debug\Vacations.DataAccess.dll
+C:\Users\beluc\Source\Repos\NewRepo\erp\Vacations\Vacations.DataAccess\obj\Debug\Vacations.DataAccess.pdb

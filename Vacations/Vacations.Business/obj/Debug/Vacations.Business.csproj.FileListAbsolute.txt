@@ -1,0 +1,9 @@
+C:\Users\beluc\Source\Repos\NewRepo\erp\TC.Platform-UAM\TC.Platform-UAM.Business\obj\Debug\TC.Platform-UAM.Business.dll
+C:\Users\beluc\Source\Repos\NewRepo\erp\TC.Platform-UAM\TC.Platform-UAM.Business\obj\Debug\TC.Platform-UAM.Business.pdb
+C:\Users\beluc\Source\Repos\NewRepo\erp\Vacations\Vacations.Business\bin\Debug\Vacations.Business.dll
+C:\Users\beluc\Source\Repos\NewRepo\erp\Vacations\Vacations.Business\bin\Debug\Vacations.Business.pdb
+C:\Users\beluc\Source\Repos\NewRepo\erp\Vacations\Vacations.Business\bin\Debug\Vacations.DataAccess.dll
+C:\Users\beluc\Source\Repos\NewRepo\erp\Vacations\Vacations.Business\bin\Debug\Vacations.DataAccess.pdb
+C:\Users\beluc\Source\Repos\NewRepo\erp\Vacations\Vacations.Business\obj\Debug\Vacations.Business.csprojResolveAssemblyReference.cache
+C:\Users\beluc\Source\Repos\NewRepo\erp\Vacations\Vacations.Business\obj\Debug\Vacations.Business.dll
+C:\Users\beluc\Source\Repos\NewRepo\erp\Vacations\Vacations.Business\obj\Debug\Vacations.Business.pdb

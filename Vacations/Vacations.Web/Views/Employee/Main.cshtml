@@ -1,0 +1,528 @@
+﻿@using Newtonsoft.Json
+@using Newtonsoft.Json.Converters
+@model Vacations.DataAccess.Models.EmployeeModel
+
+@{
+    ViewBag.Title = "Vacations Management - Employees";
+    Layout = "~/Views/Shared/_SiteMasterPageLayout.cshtml";
+
+}
+
+<div class="load-overlay"></div>
+
+<div id="header">
+    <h1>Vacations Management</h1>
+</div>
+
+
+
+<div id="jqgridtable">
+    <div id="filter-grid">
+        <div id="search-filter">
+            <input type="text" name="search" class="ui-search-input" id="search-client"/>
+            <span class="ui-search-button">SEARCH</span>
+        </div>
+        <div id="nb-pages">
+            Show <span id="sel-nb-pages"></span> results per page
+        </div>
+        <div class="logindisplay">
+            Welcome <strong>@User.Identity.Name</strong>!
+            <span class="ui-logout-button">@Html.ActionLink("Logout", "Logout", "Account")</span>
+        </div>
+    </div>
+
+    <form id="__AjaxAntiForgeryForm" action="#" method="post">
+        @Html.AntiForgeryToken()
+    </form>
+    <table id="ClientGrid"></table>
+
+</div>
+<div class="noResultsDiv gridNoRecords jstHidden">
+    <span class="tc-red">No matches found</span>
+</div>
+<div id="pager"></div>
+
+<div style="display: none; height: 100%; width: 100%; position: fixed; left: 0px; top: 0px; z-index: 949; opacity: 0.3;" id="widgetOverlay" class="ui-widget-overlay"></div>
+<div style="display: none;" id="notification" class="notification-popin"><span></span></div>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        //Data
+ 
+        function getJsonStringData() {
+
+            return '@Html.Raw(JsonConvert.SerializeObject(Model.EmployeeList, Formatting.None, 
+                   new IsoDateTimeConverter() { DateTimeFormat = "yyyy-MM-dd" } ).Replace(@"\r\n", @"\\r\\n").Replace(@"\t", @"\\t"))';
+        }
+
+        //Validation
+        var invalid = false;
+
+        function passwordEmptyCheck(value, colname) {
+            var patt = new RegExp(/(?=^.{6,}$)((?=.*\d)|(?=.*\W+))(?![.\n])(?!.*\/)(?=.*[A-Z])(?=.*[a-z]).*$/g);
+
+            if (!patt.test(value)) {
+                invalid = true;
+
+                $(".error-summary").show();
+
+                $(".error-summary").append("- Password must have at least 6 characters and contain letters (capital and lowercase), numbers and/or specials characters.<br/>");
+            }
+
+            return [true];
+        }
+
+        function passwordCheck(value, colname) {
+            var patt = new RegExp(/(?=^.{6,}$)((?=.*\d)|(?=.*\W+))(?![.\n])(?!.*\/)(?=.*[A-Z])(?=.*[a-z]).*$/g);
+
+            if (patt.test(value) || value === "") {
+                //invalid = false;
+            } else {
+                invalid = true;
+
+                $(".error-summary").show();
+
+                $(".error-summary").append("- Password must have at least 6 characters and contain letters (capital and lowercase), numbers and/or specials characters.<br/>");
+            }
+
+            return [true];
+        }
+
+        function emptyCheck(value, colname) {
+            if (value === "") {
+
+                invalid = true;
+
+                $(".error-summary").show();
+
+                $(".error-summary").append("- The field " + colname + " is required.<br/>");
+            }
+
+            return [true];
+        }
+
+        function emailCheck(value, colname) {
+            var patt = new RegExp(/^[a-zA-Z0-9._-]+@@[a-zA-Z0-9.-]{2,}[.][a-zA-Z]{2,3}/g);
+
+            if (patt.test(value) || value === "") {
+                //invalid = false;
+            } else {
+                invalid = true;
+
+                $(".error-summary").show();
+
+                $(".error-summary").append("- The format of the email is invalid<br/>");
+            }
+
+            return [true];
+        }
+
+        function serverErrorCheck(value) {
+            $(".error-summary").show();
+            $(".error-summary").append("- " + value);
+        }
+
+
+        //Grid
+        $("#ClientGrid").jqGrid({
+            datastr: getJsonStringData(),
+
+            datatype: "jsonstring",
+            jsonReader: {
+                id: 'Id',
+                repeatitems: false
+            },
+            autoencode: true,
+
+            colNames: [
+                "Id", "First Name", "Last Name", "Email", "PasswordClear", "Phone", "Position", "Type", "Beginning", "Ending", "Actions"
+            ],
+            colModel: [
+                { width: 50, name: "Id", key: true, hidden: true, editable: true, editrules: { edithidden: false } },
+                { width: 60, name: "Name", editable: true, editrules: { custom: true, custom_func: emptyCheck }, resizable: false, editoptions: { size: 60 } },
+                { width: 60, name: "Surname", editable: true, editrules: { custom: true, custom_func: emptyCheck }, resizable: false, editoptions: { size: 60 } },
+                { width: 80, name: "Email", editable: true, resizable: false, editoptions: { size: 60 }, editrules: { custom: true, custom_func: emailCheck } },
+                { width: 60, name: "PasswordClear", hidden: true, editable: true, editoptions: { size: 60 }, editrules: { edithidden: true, custom: true, custom_func: passwordCheck } },
+                { width: 60, name: "Phone", editable: true, resizable: false, editoptions: { size: 60 } },
+                { width: 80, name: "Position", editable: true, sortable: false, resizable: false },
+                { width: 60, name: "Type", sortable: false, resizable: false },
+                {
+                    width: 30,
+                    name: "StartDate",
+                    resizable: false,
+                    editable: true,
+                    editrules: { custom: true, custom_func: emptyCheck },
+                    editoptions: {
+                        size: 60,
+                        dataInit: function (el) {
+                            $(el).datepicker({
+                                dateFormat: "yy-mm-dd",
+                                changeMonth: true,
+                                changeYear: true
+                                
+                            }).datepicker('setDate', new Date());
+                        }
+                    }
+                    
+                },
+                {
+                    width: 30,
+                    name: "EndDate",
+                    editable: true,
+                    resizable: false,
+                    edittype: 'text',
+                    editoptions: {
+                        size: 60,
+                        dataInit: function(el) {
+                            $(el).datepicker({
+                                dateFormat: "yy-mm-dd",
+                                changeMonth: true,
+                                changeYear: true
+                            });
+                        }
+                    }
+                },
+                {
+                    name: 'act',
+                    width: 100,
+                    resizable: false,
+                    template: 'actions',
+                    formatoptions: {
+                        keys: true,
+                        editformbutton: true,
+
+                        editOptions: {
+                            recreateForm: true,
+                            reloadAfterSubmit: true,
+                            resize: false,
+                            width: 500,
+                            closeAfterEdit: true
+
+                        },
+                        delOptions:
+                        {
+                            ajaxDelOptions: { contentType: "application/json" },
+                            reloadAfterSubmit: false,
+                            resize: false,
+                            width: 400,
+                            onclickSubmit: function(eparams) {
+                                var sr = $("#ClientGrid").getGridParam('selrow');
+                                var rowdata = $("#ClientGrid").getRowData(sr);
+
+                                var token = $('[name=__RequestVerificationToken]').val();
+                                var headers = {};
+                                headers['__RequestVerificationToken'] = token;
+
+                                $.ajax({
+                                    url: '@Url.Action("DeleteEmployee", "Employee")',
+                                    type: "POST",
+                                    headers: headers,
+                                    data: JSON.stringify({id: rowdata.Id}),
+                                    contentType: 'application/json; charset=utf-8',
+                                    dataType: "json",
+                                    success: function (data) {
+                                        var result = JSON.parse(data.responseText);
+
+                                        if (result.Error !== null) {
+                                            serverErrorCheck(result.Error.Text);
+                                            return [false];
+                                        }
+
+                                        $('#ClientGrid').trigger('reloadGrid', [{ current: true }]);
+                                       
+
+                                        return [true];
+
+                                    }
+                                });
+
+                            },
+                            
+                            serializeDelData: function(data) {
+                                var postData = { 'data': data };
+                                return JSON.stringify(postData);
+                            }
+                        }
+
+                    }
+                }
+            ],
+
+            //Sort
+            viewrecords: false,
+            forceClientSorting: true,
+            sortname: "Surname",
+            sortorder: "desc",
+            viewsortcols: [true, 'vertical', true],
+
+            //Width & Height
+            autowidth: true,
+            height: "auto",
+            loadui: "disabled",
+
+            //Pagination
+            rowNum: 50,
+            pagination: true,
+            rowList: [50, 100, 500],
+            pager: "#pager",
+
+            //Events
+            beforeSelectRow: function(rowid, e) {
+                return false;
+            },
+
+            loadComplete: function () {
+                if ($(this).getGridParam("records") === 0) {
+                    $('#pager_center').hide();
+                    if ($(this).getGridParam("data").length > 0 && $('div.noResultsDiv').hasClass('jstHidden')) {
+                        $('div.noResultsDiv').removeClass('jstHidden').insertBefore(".ui-bottom-add");
+                    }
+                }
+                else {
+                    $('#pager_center').show();
+                    if ($('div.noResultsDiv').length > 0) {
+                        $('div.noResultsDiv').addClass('jstHidden');
+                    }
+                }
+            },
+
+            gridComplete: function () {
+
+                $(".ui-jqgrid-actions > div").addClass("ui-icon-width");
+                $(".ui-jqgrid-actions > div > span.ui-icon-pencil").removeClass("ui-icon").removeClass("ui-icon-pencil").addClass("ui-icon-pencil2");
+                $(".ui-jqgrid-actions > div > span.ui-icon-trash").removeClass("ui-icon").removeClass("ui-icon-trash").addClass("ui-icon-trash2");
+                $(".ui-jqgrid-actions > div > span.ui-icon-mail-closed").removeClass("ui-icon").removeClass("ui-icon-mail-closed").addClass("ui-icon-mail");
+                $(".ui-jqgrid-actions > div > span.ui-icon-clock").removeClass("ui-icon").removeClass("ui-icon-clock").addClass("ui-icon-stopclient");
+
+                $("#pager_left, #pager_right").width("33%");
+                $("#pager_center").width("100%");
+                $("#first_pager, #last_pager").hide();
+                $(".ui-pg-button > span.ui-icon-seek-next").removeClass("ui-icon").removeClass("ui-icon-seek-next").addClass("pager-buttons").html("Next >");
+                $(".ui-pg-button > span.ui-icon-seek-prev").removeClass("ui-icon").removeClass("ui-icon-seek-prev").addClass("pager-buttons").html("< Previous");
+
+                $("select").removeClass("ui-widget-content");
+                $('.ui-pg-selbox').detach().appendTo('#sel-nb-pages');
+
+                if ($(".ui-bottom-add").length === 0) {
+                    $("<div class='ui-bottom-add'><span class='ui-add-button' id='add_ClientGrid' role='button'>Create Employee record</span></div>").insertBefore("#pager");
+                }
+
+                $(".load-overlay").hide();
+
+            }
+        });
+
+        //Column title style
+        $("#ClientGrid").jqGrid('setLabel', 'Lastname', '', 'textalignleft');
+        $("#ClientGrid").jqGrid('setLabel', 'Firstname', '', 'textalignleft');
+        $("#ClientGrid").jqGrid('setLabel', 'Email', '', 'textalignleft');
+        $("#ClientGrid").jqGrid('setLabel', 'Phone', '', 'textalignleft');
+        $("#ClientGrid").jqGrid('setLabel', 'Position', '', 'textalignleft');
+        $("#ClientGrid").jqGrid('setLabel', 'Type', '', 'textalignleft');
+        $("#ClientGrid").jqGrid('setLabel', 'StartDate', '', 'textalignleft');
+        $("#ClientGrid").jqGrid('setLabel', 'EndDate', '', 'textalignleft');
+        $("#ClientGrid").jqGrid('setLabel', 'act', '', 'textalignleft');
+
+        //Add Form
+        $(".ui-add-button").on("click", function () {
+            $("#ClientGrid").jqGrid("editGridRow", "new", {
+                url: '@Url.Action("AddEmployee", "Employee")?partnerId=@(ViewContext.RouteData.Values["id"])',
+                editData: { __RequestVerificationToken: jQuery('input[name=__RequestVerificationToken]').val() },
+                recreateForm: true,
+                closeAfterAdd: true,
+                width: 500,
+                resize: false,
+                //Events
+                beforeShowForm: function () {
+                    
+                    $("#ClientGrid").jqGrid('setColProp', 'PasswordClear', { editrules: { edithidden: true, custom: true, custom_func: passwordEmptyCheck } });
+                    $("#tr_EndDate").hide();
+                    $("#tr_StartDate").show();
+                },
+                afterShowForm: function ($form) {
+
+                    //Remove icons in button
+                    $("#sData span").first().remove();
+                    $("#cData span").first().remove();
+
+                    //remove line of error and add custom validation summary
+                    $("#FormError").remove();
+
+                    $("#FrmGrid_ClientGrid").parent("div").addClass("div-form");
+                    $("#TblGrid_ClientGrid_2").parent("div").addClass("div-validation");
+
+                    $("<div class='error-summary'></div>").insertBefore("#TblGrid_ClientGrid_2");
+
+                    //Center popup
+                    $form.closest(".ui-jqdialog").position({
+                        of: window, // or any other element
+                        my: "center center",
+                        at: "center center"
+                    });
+                },
+                onclickSubmit: function (options, postdata) {
+                    if (!invalid) {
+
+                    }
+                },
+                afterSubmit: function (response, postdata) {
+
+                    var newRow = JSON.parse(response.responseText);
+
+                    if (newRow.Error !== null) {
+                        serverErrorCheck(newRow.Error.Text);
+                        return [false];
+                    }
+
+                    $('#ClientGrid').jqGrid('addRowData', 1, newRow, "first");
+                    $('#ClientGrid').trigger('reloadGrid', [{ current: true }]);
+
+                    return [true];
+
+                }
+
+
+            });
+        });
+
+        //Extension edit form
+        $.extend(true, $.jgrid.edit, {
+            url: '@Url.Action("UpdateEmployee", "Employee")',
+            editData: { __RequestVerificationToken: jQuery('input[name=__RequestVerificationToken]').val() },
+            recreateForm: true,
+            viewPagerButtons: false,
+            bSubmit: "Save",
+            afterShowForm: function($form) {
+
+                //Remove icons in button
+                $("#sData span").first().remove();
+                $("#cData span").first().remove();
+
+                //Hide start date field
+                $("#tr_StartDate").hide();
+
+                //remove line of error and add custom validation summary
+                $("#FormError").remove();
+
+                $("#FrmGrid_ClientGrid").parent("div").addClass("div-form");
+                $("#TblGrid_ClientGrid_2").parent("div").addClass("div-validation");
+
+                $("<div class='error-summary'></div>").insertBefore("#TblGrid_ClientGrid_2");
+
+                //Placeholder for password
+                $("#ClientGrid").jqGrid('setColProp', 'PasswordClear', { editrules: { edithidden: true, custom: true, custom_func: passwordCheck } });
+                $("#PasswordClear").attr("placeholder", "Keep it empty if you don't want to change the password");
+
+                //Center popup
+                $form.closest(".ui-jqdialog").position({
+                    of: window, // or any other element
+                    my: "center center",
+                    at: "center center"
+                });
+
+            },
+            beforeCheckValues: function(postdata, formid, opertype) {
+                $(".error-summary").empty();
+                return postdata;
+            },
+            beforeSubmit: function(postdata, formid) {
+
+                if (invalid) {
+                    invalid = false;
+                    return [false];
+                }
+
+                return [true];
+            },
+            afterSubmit: function (response, postdata) {
+
+                var newRow = JSON.parse(response.responseText);
+
+                if (newRow.Error !== null) {
+                    serverErrorCheck(newRow.Error.Text);
+                    return [false];
+                }
+                var sr = $("#ClientGrid").getGridParam('selrow');
+
+                $('#ClientGrid').jqGrid('setRowData', sr, newRow);
+                $('#ClientGrid').trigger('reloadGrid', [{ current: true }]);
+
+                return [true];
+
+            }
+        });
+
+
+        //Extension delete popup
+        $.extend(true, $.jgrid.del, {
+            msg: "Do you really want to delete this account ?",
+            bSubmit: "Yes",
+            afterShowForm: function ($form) {
+                $("#dData span").first().remove();
+                $("#eData span").first().remove();
+
+                $form.closest(".ui-jqdialog").position({
+                    of: window, // or any other element
+                    my: "center center",
+                    at: "center center"
+                });
+
+            }
+        });
+
+        //Filter
+        function searchClient() {
+            
+            var searchString = $("#search-client").val();
+            var grid = $("#ClientGrid");
+
+            if (searchString.length === 0) {
+                grid[0].p.search = false;
+                $.extend(grid[0].p.postData, { filters: "" });
+            }
+
+            var f = { groupOp: "OR", rules: [] };
+
+            f.rules.push({ field: "Lastname", op: "cn", data: searchString });
+            f.rules.push({ field: "Firstname", op: "cn", data: searchString });
+            f.rules.push({ field: "Login", op: "cn", data: searchString });
+            f.rules.push({ field: "Email", op: "cn", data: searchString });
+            f.rules.push({ field: "Phone", op: "cn", data: searchString });
+
+            grid[0].p.search = true;
+            $.extend(grid[0].p.postData, { filters: JSON.stringify(f) });
+            grid.trigger("reloadGrid", [{ page: 1 }]);
+
+        }
+
+        $(".ui-search-button").on('click', function () {
+            searchClient();
+        });
+
+        $('#search-client').keyup(function (e) {
+            if (e.keyCode === 13) {
+                searchClient();
+            }
+        });
+
+        $("input:radio[name='reminder_id']").on('click', function () {
+            $('#newPassword').hide();
+            if ($(this).data('warning') === 'True')
+                $('#newPassword').show();
+        });
+
+
+    });
+
+    $(window).on('resize', function () {
+        $('.buttonswrap').width($('#gbox_ClientGrid').width());
+    });
+
+    jQuery.fn.center = function () {
+        this.css("position", "fixed");
+        this.css("top", Math.max(0, (($(window).height() - $(this).outerHeight()) / 2)));
+        this.css("left", Math.max(0, (($(window).width() - $(this).outerWidth()) / 2) +
+                                                    $(window).scrollLeft()) + "px");
+        return this;
+    }
+</script>

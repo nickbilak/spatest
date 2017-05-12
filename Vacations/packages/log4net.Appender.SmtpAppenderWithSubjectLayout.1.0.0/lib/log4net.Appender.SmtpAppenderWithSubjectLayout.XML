@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>log4net.Appender.SmtpAppenderWithSubjectLayout</name>
+    </assembly>
+    <members>
+        <member name="P:log4net.Appender.SmtpAppenderWithSubjectLayout.SubjectLayout">
+            <summary>
+                Gets or sets the layout for subject line of the e-mail message.
+            </summary>
+            <value>
+                The layout for subject line of the e-mail message.
+            </value>
+            <remarks>
+                <para>
+                    The layout for subject line of the e-mail message.
+                </para>
+            </remarks>
+        </member>
+    </members>
+</doc>

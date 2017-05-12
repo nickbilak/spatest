@@ -1,0 +1,8 @@
+F:\_tradingcentral\_vstc\TC-Platform-UAM\WebApp\Dev\TC.Platform-UAM\TC.Platform-UAM.DataAccess.Tests\bin\Debug\TC.Platform-UAM.DataAccess.Tests.dll.config
+F:\_tradingcentral\_vstc\TC-Platform-UAM\WebApp\Dev\TC.Platform-UAM\TC.Platform-UAM.DataAccess.Tests\bin\Debug\TC.Platform-UAM.DataAccess.Tests.dll
+F:\_tradingcentral\_vstc\TC-Platform-UAM\WebApp\Dev\TC.Platform-UAM\TC.Platform-UAM.DataAccess.Tests\bin\Debug\TC.Platform-UAM.DataAccess.Tests.pdb
+F:\_tradingcentral\_vstc\TC-Platform-UAM\WebApp\Dev\TC.Platform-UAM\TC.Platform-UAM.DataAccess.Tests\bin\Debug\TC.Platform-UAM.DataAccess.dll
+F:\_tradingcentral\_vstc\TC-Platform-UAM\WebApp\Dev\TC.Platform-UAM\TC.Platform-UAM.DataAccess.Tests\bin\Debug\TC.Platform-UAM.DataAccess.pdb
+F:\_tradingcentral\_vstc\TC-Platform-UAM\WebApp\Dev\TC.Platform-UAM\TC.Platform-UAM.DataAccess.Tests\obj\Debug\TC.Platform-UAM.DataAccess.Tests.csprojResolveAssemblyReference.cache
+F:\_tradingcentral\_vstc\TC-Platform-UAM\WebApp\Dev\TC.Platform-UAM\TC.Platform-UAM.DataAccess.Tests\obj\Debug\TC.Platform-UAM.DataAccess.Tests.dll
+F:\_tradingcentral\_vstc\TC-Platform-UAM\WebApp\Dev\TC.Platform-UAM\TC.Platform-UAM.DataAccess.Tests\obj\Debug\TC.Platform-UAM.DataAccess.Tests.pdb

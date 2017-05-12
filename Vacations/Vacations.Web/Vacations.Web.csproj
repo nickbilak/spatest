@@ -1,0 +1,537 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>
+    </ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{6CB93884-2568-4E14-9AD7-AF72FE0C6448}</ProjectGuid>
+    <ProjectTypeGuids>{E3E379DF-F4C6-4180-9B81-6769533ABE47};{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Vacations.Web</RootNamespace>
+    <AssemblyName>Vacations.Web</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <MvcBuildViews>false</MvcBuildViews>
+    <UseIISExpress>true</UseIISExpress>
+    <IISExpressSSLPort />
+    <IISExpressAnonymousAuthentication />
+    <IISExpressWindowsAuthentication />
+    <IISExpressUseClassicPipelineMode />
+    <SolutionDir Condition="$(SolutionDir) == '' Or $(SolutionDir) == '*Undefined*'">..\</SolutionDir>
+    <RestorePackages>true</RestorePackages>
+    <SccProjectName>SAK</SccProjectName>
+    <SccLocalPath>SAK</SccLocalPath>
+    <SccAuxPath>SAK</SccAuxPath>
+    <SccProvider>SAK</SccProvider>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <PlatformTarget>x86</PlatformTarget>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="AntiXssLibrary, Version=4.3.0.0, Culture=neutral, PublicKeyToken=d127efab8a9c114f, processorArchitecture=MSIL">
+      <HintPath>..\packages\AntiXSS.4.3.0\lib\net40\AntiXssLibrary.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="AutoMapper">
+      <HintPath>..\packages\AutoMapper.4.2.1\lib\net45\AutoMapper.dll</HintPath>
+    </Reference>
+    <Reference Include="HtmlSanitizationLibrary, Version=4.3.0.0, Culture=neutral, PublicKeyToken=d127efab8a9c114f, processorArchitecture=MSIL">
+      <HintPath>..\packages\AntiXSS.4.3.0\lib\net40\HtmlSanitizationLibrary.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="log4net, Version=1.2.11.0, Culture=neutral, PublicKeyToken=669e0ddf0bb1aa2a, processorArchitecture=MSIL">
+      <HintPath>..\packages\log4net.2.0.0\lib\net40-full\log4net.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="log4net.Appender.SmtpAppenderWithSubjectLayout, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\log4net.Appender.SmtpAppenderWithSubjectLayout.1.0.0\lib\log4net.Appender.SmtpAppenderWithSubjectLayout.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Ninject, Version=3.2.0.0, Culture=neutral, PublicKeyToken=c7192dc5380945e7, processorArchitecture=MSIL">
+      <HintPath>..\packages\Ninject.3.2.0.0\lib\net45-full\Ninject.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Ninject.Web.Common, Version=3.2.0.0, Culture=neutral, PublicKeyToken=c7192dc5380945e7, processorArchitecture=MSIL">
+      <HintPath>..\packages\Ninject.Web.Common.3.2.0.0\lib\net45-full\Ninject.Web.Common.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Ninject.Web.Mvc, Version=3.2.0.0, Culture=neutral, PublicKeyToken=c7192dc5380945e7, processorArchitecture=MSIL">
+      <HintPath>..\packages\Ninject.MVC4.3.2.1.0\lib\net45-full\Ninject.Web.Mvc.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Transactions" />
+    <Reference Include="System.Web.DynamicData" />
+    <Reference Include="System.Web.Entity" />
+    <Reference Include="System.Web.ApplicationServices" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Web.Helpers, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.2.0.20710.0\lib\net40\System.Web.Helpers.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Web.Mvc, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.Mvc.4.0.20710.0\lib\net40\System.Web.Mvc.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Web.Razor, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.Razor.2.0.20715.0\lib\net40\System.Web.Razor.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Web.WebPages, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.2.0.20710.0\lib\net40\System.Web.WebPages.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Web.WebPages.Deployment, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.2.0.20710.0\lib\net40\System.Web.WebPages.Deployment.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Web.WebPages.Razor, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.2.0.20710.0\lib\net40\System.Web.WebPages.Razor.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Web.Abstractions" />
+    <Reference Include="System.Web.Routing" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Web.Services" />
+    <Reference Include="System.EnterpriseServices" />
+    <Reference Include="Microsoft.Web.Infrastructure, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.Web.Infrastructure.1.0.0.0\lib\net40\Microsoft.Web.Infrastructure.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Web.Mvc.FixedDisplayModes, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.Mvc.FixedDisplayModes.1.0.0\lib\net40\Microsoft.Web.Mvc.FixedDisplayModes.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json">
+      <HintPath>..\packages\Newtonsoft.Json.4.5.11\lib\net40\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Net.Http">
+    </Reference>
+    <Reference Include="System.Net.Http.Formatting, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.Client.4.0.20710.0\lib\net40\System.Net.Http.Formatting.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Net.Http.WebRequest">
+    </Reference>
+    <Reference Include="System.Web.Http, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.Core.4.0.20710.0\lib\net40\System.Web.Http.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Http.WebHost, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.WebHost.4.0.20710.0\lib\net40\System.Web.Http.WebHost.dll</HintPath>
+    </Reference>
+    <Reference Include="Trirand.Web.Mvc, Version=4.6.0.0, Culture=neutral, PublicKeyToken=e2819dc449af3295, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>Dependencies\Trirand.Web.Mvc.dll</HintPath>
+    </Reference>
+    <Reference Include="WebActivatorEx, Version=2.0.0.0, Culture=neutral, PublicKeyToken=7b26dc2a43f6a0d4, processorArchitecture=MSIL">
+      <HintPath>..\packages\WebActivatorEx.2.0\lib\net40\WebActivatorEx.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="App_Start\LoggerConfig.cs" />
+    <Compile Include="App_Start\NinjectConfigurator.cs" />
+    <Compile Include="App_Start\NinjectWebCommon.cs" />
+    <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\EmployeeController.cs" />
+    <Compile Include="Filters\ValidateJsonAntiForgeryTokenAttribute.cs" />
+    <Compile Include="Global.asax.cs">
+      <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
+    <Compile Include="Helpers\ConfigHelper.cs" />
+    <Compile Include="Helpers\ErrorHelper.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Services\Contracts\IFormsAuthenticationService.cs" />
+    <Compile Include="Services\Implementations\FormsAuthenticationService.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="App_Start\FilterConfig.cs" />
+    <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="App_Start\WebApiConfig.cs" />
+    <Content Include="Content\jquery.jqGrid\ui.jqgrid.css" />
+    <Content Include="Content\Stylesheets\jquery.jexcel.css" />
+    <Content Include="Content\Stylesheets\jquery.jexcel.min.css" />
+    <Content Include="Content\Stylesheets\main.css" />
+    <Content Include="Content\themes\base\images\add_icon.png" />
+    <Content Include="Content\themes\base\images\delete_icon.png" />
+    <Content Include="Content\themes\base\images\edit_icon.png" />
+    <Content Include="Content\themes\base\images\logout_icon.png" />
+    <Content Include="Content\themes\base\images\mail_icon.png" />
+    <Content Include="Content\themes\base\images\search_icon.png" />
+    <Content Include="Content\themes\base\images\ui-bg_flat_0_aaaaaa_40x100.png" />
+    <Content Include="Content\themes\base\images\ui-bg_flat_75_ffffff_40x100.png" />
+    <Content Include="Content\themes\base\images\ui-bg_glass_55_fbf9ee_1x400.png" />
+    <Content Include="Content\themes\base\images\ui-bg_glass_65_ffffff_1x400.png" />
+    <Content Include="Content\themes\base\images\ui-bg_glass_75_dadada_1x400.png" />
+    <Content Include="Content\themes\base\images\ui-bg_glass_75_e6e6e6_1x400.png" />
+    <Content Include="Content\themes\base\images\ui-bg_glass_95_fef1ec_1x400.png" />
+    <Content Include="Content\themes\base\images\ui-bg_highlight-soft_75_cccccc_1x100.png" />
+    <Content Include="Content\themes\base\images\ui-icons_222222_256x240.png" />
+    <Content Include="Content\themes\base\images\ui-icons_2e83ff_256x240.png" />
+    <Content Include="Content\themes\base\images\ui-icons_454545_256x240.png" />
+    <Content Include="Content\themes\base\images\ui-icons_888888_256x240.png" />
+    <Content Include="Content\themes\base\images\ui-icons_cd0a0a_256x240.png" />
+    <Content Include="Content\themes\base\images\ui-icons_ffffff_256x240.png" />
+    <Content Include="Content\themes\base\jquery.ui.accordion.css" />
+    <Content Include="Content\themes\base\jquery.ui.all.css" />
+    <Content Include="Content\themes\base\jquery.ui.autocomplete.css" />
+    <Content Include="Content\themes\base\jquery.ui.base.css" />
+    <Content Include="Content\themes\base\jquery.ui.button.css" />
+    <Content Include="Content\themes\base\jquery.ui.core.css" />
+    <Content Include="Content\themes\base\jquery.ui.datepicker.css" />
+    <Content Include="Content\themes\base\jquery.ui.dialog.css" />
+    <Content Include="Content\themes\base\jquery.ui.progressbar.css" />
+    <Content Include="Content\themes\base\jquery.ui.resizable.css" />
+    <Content Include="Content\themes\base\jquery.ui.selectable.css" />
+    <Content Include="Content\themes\base\jquery.ui.slider.css" />
+    <Content Include="Content\themes\base\jquery.ui.tabs.css" />
+    <Content Include="Content\themes\base\jquery.ui.theme.css" />
+    <Content Include="Content\ui.jqgrid.css" />
+    <Content Include="Content\ui.jqgrid.min.css" />
+    <Content Include="Dependencies\Trirand.Web.Mvc.dll" />
+    <Content Include="img\ajax-loader.gif" />
+    <Content Include="img\chevron_blanc.png" />
+    <Content Include="img\CloseIcon.png" />
+    <Content Include="img\favicon.ico" />
+    <Content Include="fonts\montserrat-light-webfont.svg" />
+    <Content Include="fonts\montserrat-semibold-webfont.svg" />
+    <Content Include="Global.asax" />
+    <Content Include="img\errorpage.svg" />
+    <Content Include="Scripts\free-jqGrid\i18n\grid.locale-ar.js" />
+    <Content Include="Scripts\free-jqGrid\i18n\grid.locale-ar.min.js" />
+    <Content Include="Scripts\free-jqGrid\i18n\grid.locale-bg.js" />
+    <Content Include="Scripts\free-jqGrid\i18n\grid.locale-bg.min.js" />
+    <Content Include="Scripts\free-jqGrid\i18n\grid.locale-ca.js" />
+    <Content Include="Scripts\free-jqGrid\i18n\grid.locale-ca.min.js" />
+    <Content Include="Scripts\free-jqGrid\i18n\grid.locale-cn.js" />
+    <Content Include="Scripts\free-jqGrid\i18n\grid.locale-cn.min.js" />
+    <Content Include="Scripts\free-jqGrid\i18n\grid.locale-cs.js" />
+    <Content Include="Scripts\free-jqGrid\i18n\grid.locale-cs.min.js" />
+    <Content Include="Scripts\free-jqGrid\i18n\grid.locale-da.js" />
+    <Content Include="Scripts\free-jqGrid\i18n\grid.locale-da.min.js" />
+    <Content Include="Scripts\free-jqGrid\i18n\grid.locale-de.js" />
+    <Content Include="Scripts\free-jqGrid\i18n\grid.locale-de.min.js" />
+    <Content Include="Scripts\free-jqGrid\i18n\grid.locale-el.js" />
+    <Content Include="Scripts\free-jqGrid\i18n\grid.locale-el.min.js" />
+    <Content Include="Scripts\free-jqGrid\i18n\grid.locale-en.js" />
+    <Content Include="Scripts\free-jqGrid\i18n\grid.locale-en.min.js" />
+    <Content Include="Scripts\free-jqGrid\i18n\grid.locale-es.js" />
+    <Content Include="Scripts\free-jqGrid\i18n\grid.locale-es.min.js" />
+    <Content Include="Scripts\free-jqGrid\i18n\grid.locale-fa.js" />
+    <Content Include="Scripts\free-jqGrid\i18n\grid.locale-fa.min.js" />
+    <Content Include="Scripts\free-jqGrid\i18n\grid.locale-fi.js" />
+    <Content Include="Scripts\free-jqGrid\i18n\grid.locale-fi.min.js" />
+    <Content Include="Scripts\free-jqGrid\i18n\grid.locale-fr.js" />
+    <Content Include="Scripts\free-jqGrid\i18n\grid.locale-fr.min.js" />
+    <Content Include="Scripts\free-jqGrid\i18n\grid.locale-gl.js" />
+    <Content Include="Scripts\free-jqGrid\i18n\grid.locale-gl.min.js" />
+    <Content Include="Scripts\free-jqGrid\i18n\grid.locale-he.js" />
+    <Content Include="Scripts\free-jqGrid\i18n\grid.locale-he.min.js" />
+    <Content Include="Scripts\free-jqGrid\i18n\grid.locale-hr.js" />
+    <Content Include="Scripts\free-jqGrid\i18n\grid.locale-hr.min.js" />
+    <Content Include="Scripts\free-jqGrid\i18n\grid.locale-hu.js" />
+    <Content Include="Scripts\free-jqGrid\i18n\grid.locale-hu.min.js" />
+    <Content Include="Scripts\free-jqGrid\i18n\grid.locale-id.js" />
+    <Content Include="Scripts\free-jqGrid\i18n\grid.locale-id.min.js" />
+    <Content Include="Scripts\free-jqGrid\i18n\grid.locale-is.js" />
+    <Content Include="Scripts\free-jqGrid\i18n\grid.locale-is.min.js" />
+    <Content Include="Scripts\free-jqGrid\i18n\grid.locale-it.js" />
+    <Content Include="Scripts\free-jqGrid\i18n\grid.locale-it.min.js" />
+    <Content Include="Scripts\free-jqGrid\i18n\grid.locale-ja.js" />
+    <Content Include="Scripts\free-jqGrid\i18n\grid.locale-ja.min.js" />
+    <Content Include="Scripts\free-jqGrid\i18n\grid.locale-kr.js" />
+    <Content Include="Scripts\free-jqGrid\i18n\grid.locale-kr.min.js" />
+    <Content Include="Scripts\free-jqGrid\i18n\grid.locale-lt.js" />
+    <Content Include="Scripts\free-jqGrid\i18n\grid.locale-lt.min.js" />
+    <Content Include="Scripts\free-jqGrid\i18n\grid.locale-me.js" />
+    <Content Include="Scripts\free-jqGrid\i18n\grid.locale-me.min.js" />
+    <Content Include="Scripts\free-jqGrid\i18n\grid.locale-nl.js" />
+    <Content Include="Scripts\free-jqGrid\i18n\grid.locale-nl.min.js" />
+    <Content Include="Scripts\free-jqGrid\i18n\grid.locale-no.js" />
+    <Content Include="Scripts\free-jqGrid\i18n\grid.locale-no.min.js" />
+    <Content Include="Scripts\free-jqGrid\i18n\grid.locale-pl.js" />
+    <Content Include="Scripts\free-jqGrid\i18n\grid.locale-pl.min.js" />
+    <Content Include="Scripts\free-jqGrid\i18n\grid.locale-pt-br.js" />
+    <Content Include="Scripts\free-jqGrid\i18n\grid.locale-pt-br.min.js" />
+    <Content Include="Scripts\free-jqGrid\i18n\grid.locale-pt.js" />
+    <Content Include="Scripts\free-jqGrid\i18n\grid.locale-pt.min.js" />
+    <Content Include="Scripts\free-jqGrid\i18n\grid.locale-ro.js" />
+    <Content Include="Scripts\free-jqGrid\i18n\grid.locale-ro.min.js" />
+    <Content Include="Scripts\free-jqGrid\i18n\grid.locale-ru.js" />
+    <Content Include="Scripts\free-jqGrid\i18n\grid.locale-ru.min.js" />
+    <Content Include="Scripts\free-jqGrid\i18n\grid.locale-sk.js" />
+    <Content Include="Scripts\free-jqGrid\i18n\grid.locale-sk.min.js" />
+    <Content Include="Scripts\free-jqGrid\i18n\grid.locale-sr.js" />
+    <Content Include="Scripts\free-jqGrid\i18n\grid.locale-sr.min.js" />
+    <Content Include="Scripts\free-jqGrid\i18n\grid.locale-sv.js" />
+    <Content Include="Scripts\free-jqGrid\i18n\grid.locale-sv.min.js" />
+    <Content Include="Scripts\free-jqGrid\i18n\grid.locale-th.js" />
+    <Content Include="Scripts\free-jqGrid\i18n\grid.locale-th.min.js" />
+    <Content Include="Scripts\free-jqGrid\i18n\grid.locale-tr.js" />
+    <Content Include="Scripts\free-jqGrid\i18n\grid.locale-tr.min.js" />
+    <Content Include="Scripts\free-jqGrid\i18n\grid.locale-tw.js" />
+    <Content Include="Scripts\free-jqGrid\i18n\grid.locale-tw.min.js" />
+    <Content Include="Scripts\free-jqGrid\i18n\grid.locale-ua.js" />
+    <Content Include="Scripts\free-jqGrid\i18n\grid.locale-ua.min.js" />
+    <Content Include="Scripts\free-jqGrid\i18n\grid.locale-vi.js" />
+    <Content Include="Scripts\free-jqGrid\i18n\grid.locale-vi.min.js" />
+    <Content Include="Scripts\free-jqGrid\jquery.jqgrid.min.js" />
+    <Content Include="Scripts\free-jqGrid\jquery.jqgrid.src.js" />
+    <Content Include="Scripts\free-jqGrid\modules\grid.base.js" />
+    <Content Include="Scripts\free-jqGrid\modules\grid.celledit.js" />
+    <Content Include="Scripts\free-jqGrid\modules\grid.common.js" />
+    <Content Include="Scripts\free-jqGrid\modules\grid.custom.js" />
+    <Content Include="Scripts\free-jqGrid\modules\grid.filter.js" />
+    <Content Include="Scripts\free-jqGrid\modules\grid.formedit.js" />
+    <Content Include="Scripts\free-jqGrid\modules\grid.grouping.js" />
+    <Content Include="Scripts\free-jqGrid\modules\grid.import.js" />
+    <Content Include="Scripts\free-jqGrid\modules\grid.inlinedit.js" />
+    <Content Include="Scripts\free-jqGrid\modules\grid.jqueryui.js" />
+    <Content Include="Scripts\free-jqGrid\modules\grid.pivot.js" />
+    <Content Include="Scripts\free-jqGrid\modules\grid.subgrid.js" />
+    <Content Include="Scripts\free-jqGrid\modules\grid.tbltogrid.js" />
+    <Content Include="Scripts\free-jqGrid\modules\grid.treegrid.js" />
+    <Content Include="Scripts\free-jqGrid\modules\jqdnr.js" />
+    <Content Include="Scripts\free-jqGrid\modules\jqmodal.js" />
+    <Content Include="Scripts\free-jqGrid\modules\jquery.fmatter.js" />
+    <Content Include="Scripts\free-jqGrid\modules\jsonxml.js" />
+    <Content Include="Scripts\free-jqGrid\modules\min\grid.base.js" />
+    <Content Include="Scripts\free-jqGrid\modules\min\grid.celledit.js" />
+    <Content Include="Scripts\free-jqGrid\modules\min\grid.common.js" />
+    <Content Include="Scripts\free-jqGrid\modules\min\grid.custom.js" />
+    <Content Include="Scripts\free-jqGrid\modules\min\grid.filter.js" />
+    <Content Include="Scripts\free-jqGrid\modules\min\grid.formedit.js" />
+    <Content Include="Scripts\free-jqGrid\modules\min\grid.grouping.js" />
+    <Content Include="Scripts\free-jqGrid\modules\min\grid.import.js" />
+    <Content Include="Scripts\free-jqGrid\modules\min\grid.inlinedit.js" />
+    <Content Include="Scripts\free-jqGrid\modules\min\grid.jqueryui.js" />
+    <Content Include="Scripts\free-jqGrid\modules\min\grid.pivot.js" />
+    <Content Include="Scripts\free-jqGrid\modules\min\grid.subgrid.js" />
+    <Content Include="Scripts\free-jqGrid\modules\min\grid.tbltogrid.js" />
+    <Content Include="Scripts\free-jqGrid\modules\min\grid.treegrid.js" />
+    <Content Include="Scripts\free-jqGrid\modules\min\jqdnr.js" />
+    <Content Include="Scripts\free-jqGrid\modules\min\jqmodal.js" />
+    <Content Include="Scripts\free-jqGrid\modules\min\jquery.fmatter.js" />
+    <Content Include="Scripts\free-jqGrid\modules\min\jsonxml.js" />
+    <Content Include="Scripts\free-jqGrid\plugins\grid.odata.js" />
+    <Content Include="Scripts\free-jqGrid\plugins\grid.odata.min.js" />
+    <Content Include="Scripts\free-jqGrid\plugins\jquery.contextmenu-ui.js" />
+    <Content Include="Scripts\free-jqGrid\plugins\jquery.contextmenu-ui.min.js" />
+    <Content Include="Scripts\free-jqGrid\plugins\jquery.contextmenu.js" />
+    <Content Include="Scripts\free-jqGrid\plugins\jquery.contextmenu.min.js" />
+    <Content Include="Scripts\free-jqGrid\plugins\jquery.createcontexmenufromnavigatorbuttons.js" />
+    <Content Include="Scripts\free-jqGrid\plugins\jquery.createcontexmenufromnavigatorbuttons.min.js" />
+    <Content Include="Scripts\free-jqGrid\plugins\jquery.jqgrid.showhidecolumnmenu.js" />
+    <Content Include="Scripts\free-jqGrid\plugins\jquery.jqgrid.showhidecolumnmenu.min.js" />
+    <Content Include="Scripts\free-jqGrid\plugins\ui.multiselect.css" />
+    <Content Include="Scripts\free-jqGrid\plugins\ui.multiselect.js" />
+    <Content Include="Scripts\free-jqGrid\plugins\ui.multiselect.min.css" />
+    <Content Include="Scripts\free-jqGrid\plugins\ui.multiselect.min.js" />
+    <Content Include="Scripts\free-jqGrid\plugins\ui.multiselect.min.map" />
+    <Content Include="Scripts\free-jqGrid\plugins\ui.multiselect.min.css.map" />
+    <Content Include="Scripts\free-jqGrid\plugins\jquery.jqgrid.showhidecolumnmenu.min.map" />
+    <Content Include="Scripts\free-jqGrid\plugins\jquery.createcontexmenufromnavigatorbuttons.min.map" />
+    <Content Include="Scripts\free-jqGrid\plugins\jquery.contextmenu-ui.min.map" />
+    <Content Include="Scripts\free-jqGrid\plugins\jquery.contextmenu.min.map" />
+    <Content Include="Scripts\free-jqGrid\plugins\grid.odata.min.map" />
+    <Content Include="Scripts\free-jqGrid\modules\min\jsonxml.map" />
+    <Content Include="Scripts\free-jqGrid\modules\min\jquery.fmatter.map" />
+    <Content Include="Scripts\free-jqGrid\modules\min\jqmodal.map" />
+    <Content Include="Scripts\free-jqGrid\modules\min\jqdnr.map" />
+    <Content Include="Scripts\free-jqGrid\modules\min\grid.treegrid.map" />
+    <Content Include="Scripts\free-jqGrid\modules\min\grid.tbltogrid.map" />
+    <Content Include="Scripts\free-jqGrid\modules\min\grid.subgrid.map" />
+    <Content Include="Scripts\free-jqGrid\modules\min\grid.pivot.map" />
+    <Content Include="Scripts\free-jqGrid\modules\min\grid.jqueryui.map" />
+    <Content Include="Scripts\free-jqGrid\modules\min\grid.inlinedit.map" />
+    <Content Include="Scripts\free-jqGrid\modules\min\grid.import.map" />
+    <Content Include="Scripts\free-jqGrid\modules\min\grid.grouping.map" />
+    <Content Include="Scripts\free-jqGrid\modules\min\grid.formedit.map" />
+    <Content Include="Scripts\free-jqGrid\modules\min\grid.filter.map" />
+    <Content Include="Scripts\free-jqGrid\modules\min\grid.custom.map" />
+    <Content Include="Scripts\free-jqGrid\modules\min\grid.common.map" />
+    <Content Include="Scripts\free-jqGrid\modules\min\grid.celledit.map" />
+    <Content Include="Scripts\free-jqGrid\modules\min\grid.base.map" />
+    <Content Include="Scripts\free-jqGrid\jquery.jqgrid.min.map" />
+    <Content Include="Scripts\free-jqGrid\i18n\grid.locale-vi.min.map" />
+    <Content Include="Scripts\free-jqGrid\i18n\grid.locale-ua.min.map" />
+    <Content Include="Scripts\free-jqGrid\i18n\grid.locale-tw.min.map" />
+    <Content Include="Scripts\free-jqGrid\i18n\grid.locale-tr.min.map" />
+    <Content Include="Scripts\free-jqGrid\i18n\grid.locale-th.min.map" />
+    <Content Include="Scripts\free-jqGrid\i18n\grid.locale-sv.min.map" />
+    <Content Include="Scripts\free-jqGrid\i18n\grid.locale-sr.min.map" />
+    <Content Include="Scripts\free-jqGrid\i18n\grid.locale-sk.min.map" />
+    <Content Include="Scripts\free-jqGrid\i18n\grid.locale-ru.min.map" />
+    <Content Include="Scripts\free-jqGrid\i18n\grid.locale-ro.min.map" />
+    <Content Include="Scripts\free-jqGrid\i18n\grid.locale-pt-br.min.map" />
+    <Content Include="Scripts\free-jqGrid\i18n\grid.locale-pt.min.map" />
+    <Content Include="Scripts\free-jqGrid\i18n\grid.locale-pl.min.map" />
+    <Content Include="Scripts\free-jqGrid\i18n\grid.locale-no.min.map" />
+    <Content Include="Scripts\free-jqGrid\i18n\grid.locale-nl.min.map" />
+    <Content Include="Scripts\free-jqGrid\i18n\grid.locale-me.min.map" />
+    <Content Include="Scripts\free-jqGrid\i18n\grid.locale-lt.min.map" />
+    <Content Include="Scripts\free-jqGrid\i18n\grid.locale-kr.min.map" />
+    <Content Include="Scripts\free-jqGrid\i18n\grid.locale-ja.min.map" />
+    <Content Include="Scripts\free-jqGrid\i18n\grid.locale-it.min.map" />
+    <Content Include="Scripts\free-jqGrid\i18n\grid.locale-is.min.map" />
+    <Content Include="Scripts\free-jqGrid\i18n\grid.locale-id.min.map" />
+    <Content Include="Scripts\free-jqGrid\i18n\grid.locale-hu.min.map" />
+    <Content Include="Scripts\free-jqGrid\i18n\grid.locale-hr.min.map" />
+    <Content Include="Scripts\free-jqGrid\i18n\grid.locale-he.min.map" />
+    <Content Include="Scripts\free-jqGrid\i18n\grid.locale-gl.min.map" />
+    <Content Include="Scripts\free-jqGrid\i18n\grid.locale-fr.min.map" />
+    <Content Include="Scripts\free-jqGrid\i18n\grid.locale-fi.min.map" />
+    <Content Include="Scripts\free-jqGrid\i18n\grid.locale-fa.min.map" />
+    <Content Include="Scripts\free-jqGrid\i18n\grid.locale-es.min.map" />
+    <Content Include="Scripts\free-jqGrid\i18n\grid.locale-en.min.map" />
+    <Content Include="Scripts\free-jqGrid\i18n\grid.locale-el.min.map" />
+    <Content Include="Scripts\free-jqGrid\i18n\grid.locale-de.min.map" />
+    <Content Include="Scripts\free-jqGrid\i18n\grid.locale-da.min.map" />
+    <Content Include="Scripts\free-jqGrid\i18n\grid.locale-cs.min.map" />
+    <Content Include="Scripts\free-jqGrid\i18n\grid.locale-cn.min.map" />
+    <Content Include="Scripts\free-jqGrid\i18n\grid.locale-ca.min.map" />
+    <Content Include="Scripts\free-jqGrid\i18n\grid.locale-bg.min.map" />
+    <Content Include="Scripts\free-jqGrid\i18n\grid.locale-ar.min.map" />
+    <Content Include="Content\ui.jqgrid.min.css.map" />
+    <Content Include="fonts\montserrat-light-webfont.eot" />
+    <Content Include="fonts\montserrat-light-webfont.ttf" />
+    <Content Include="fonts\montserrat-light-webfont.woff" />
+    <Content Include="fonts\montserrat-light-webfont.woff2" />
+    <Content Include="fonts\montserrat-semibold-webfont.eot" />
+    <Content Include="fonts\montserrat-semibold-webfont.ttf" />
+    <Content Include="fonts\montserrat-semibold-webfont.woff" />
+    <Content Include="fonts\montserrat-semibold-webfont.woff2" />
+    <None Include="Scripts\jquery-1.7.2.intellisense.js" />
+    <Content Include="Scripts\jquery-1.7.2.js" />
+    <Content Include="Scripts\jquery-1.7.2.min.js" />
+    <Content Include="Scripts\jquery-ui-1.8.11.js" />
+    <Content Include="Scripts\jquery-ui-1.8.11.min.js" />
+    <Content Include="Scripts\jquery.jexcel.js" />
+    <Content Include="Scripts\jquery.jexcel.min.js" />
+    <Content Include="Scripts\jquery.validate.min.js" />
+    <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="Views\Web.config" />
+    <Content Include="Views\Employee\Main.cshtml" />
+    <Content Include="Views\Shared\_SiteMasterPageLayout.cshtml" />
+    <Content Include="Views\Account\Login.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="App_Data\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="packages.config">
+      <SubType>Designer</SubType>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Vacations.Web.nuspec" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Logger.config">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Vacations.Business\Vacations.Business.csproj">
+      <Project>{5e641082-2837-4c74-a59f-148e0a8b7cfb}</Project>
+      <Name>Vacations.Business</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Vacations.DataAccess\Vacations.DataAccess.csproj">
+      <Project>{72668005-3bff-4da4-9435-9fe951e73944}</Project>
+      <Name>Vacations.DataAccess</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <PropertyGroup>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
+    <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x86'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <DebugType>full</DebugType>
+    <PlatformTarget>x86</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x86'">
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>x86</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(VSToolsPath)\WebApplications\Microsoft.WebApplication.targets" Condition="'$(VSToolsPath)' != ''" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" Condition="false" />
+  <Target Name="MvcBuildViews" AfterTargets="AfterBuild" Condition="'$(MvcBuildViews)'=='true'">
+    <AspNetCompiler VirtualPath="temp" PhysicalPath="$(WebProjectOutputDir)" />
+  </Target>
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
+        <WebProjectProperties>
+          <UseIIS>True</UseIIS>
+          <AutoAssignPort>True</AutoAssignPort>
+          <DevelopmentServerPort>55824</DevelopmentServerPort>
+          <DevelopmentServerVPath>/</DevelopmentServerVPath>
+          <IISUrl>http://localhost:64962</IISUrl>
+          <NTLMAuthentication>False</NTLMAuthentication>
+          <UseCustomServer>False</UseCustomServer>
+          <CustomServerUrl>
+          </CustomServerUrl>
+          <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
+        </WebProjectProperties>
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
+  <Import Project="$(SolutionDir)\.nuget\NuGet.targets" Condition="Exists('$(SolutionDir)\.nuget\NuGet.targets')" />
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>This project references NuGet package(s) that are missing on this computer. Enable NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('$(SolutionDir)\.nuget\NuGet.targets')" Text="$([System.String]::Format('$(ErrorText)', '$(SolutionDir)\.nuget\NuGet.targets'))" />
+  </Target>
+  <Import Project="..\packages\OctoPack.3.4.7\tools\OctoPack.targets" Condition="Exists('..\packages\OctoPack.3.4.7\tools\OctoPack.targets')" />
+  <Target Name="EnsureOctoPackImported" BeforeTargets="BeforeBuild" Condition="'$(OctoPackImported)' == ''">
+    <Error Condition="!Exists('..\packages\OctoPack.3.4.7\tools\OctoPack.targets') And ('$(RunOctoPack)' != '' And $(RunOctoPack))" Text="You are trying to build with OctoPack, but the NuGet targets file that OctoPack depends on is not available on this computer. This is probably because the OctoPack package has not been committed to source control, or NuGet Package Restore is not enabled. Please enable NuGet Package Restore to download them. For more information, see http://go.microsoft.com/fwlink/?LinkID=317567." HelpKeyword="BCLBUILD2001" />
+    <Error Condition="Exists('..\packages\OctoPack.3.4.7\tools\OctoPack.targets') And ('$(RunOctoPack)' != '' And $(RunOctoPack))" Text="OctoPack cannot be run because NuGet packages were restored prior to the build running, and the targets file was unavailable when the build started. Please build the project again to include these packages in the build. You may also need to make sure that your build server does not delete packages prior to each build. For more information, see http://go.microsoft.com/fwlink/?LinkID=317568." HelpKeyword="BCLBUILD2002" />
+  </Target>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target> -->
+</Project>

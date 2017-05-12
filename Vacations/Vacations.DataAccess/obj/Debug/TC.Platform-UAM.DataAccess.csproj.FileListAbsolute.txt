@@ -1,0 +1,5 @@
+F:\_tradingcentral\_vstc\TC-Platform-UAM\WebApp\Dev\TC.Platform-UAM\TC.Platform-UAM.DataAccess\bin\Debug\TC.Platform-UAM.DataAccess.dll
+F:\_tradingcentral\_vstc\TC-Platform-UAM\WebApp\Dev\TC.Platform-UAM\TC.Platform-UAM.DataAccess\bin\Debug\TC.Platform-UAM.DataAccess.pdb
+F:\_tradingcentral\_vstc\TC-Platform-UAM\WebApp\Dev\TC.Platform-UAM\TC.Platform-UAM.DataAccess\obj\Debug\TC.Platform-UAM.DataAccess.csprojResolveAssemblyReference.cache
+F:\_tradingcentral\_vstc\TC-Platform-UAM\WebApp\Dev\TC.Platform-UAM\TC.Platform-UAM.DataAccess\obj\Debug\TC.Platform-UAM.DataAccess.dll
+F:\_tradingcentral\_vstc\TC-Platform-UAM\WebApp\Dev\TC.Platform-UAM\TC.Platform-UAM.DataAccess\obj\Debug\TC.Platform-UAM.DataAccess.pdb

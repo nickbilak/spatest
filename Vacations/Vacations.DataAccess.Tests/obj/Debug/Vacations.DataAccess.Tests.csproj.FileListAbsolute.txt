@@ -1,0 +1,14 @@
+C:\Users\beluc\Source\Repos\NewRepo\erp\TC.Platform-UAM\TC.Platform-UAM.DataAccess.Tests\obj\Debug\TC.Platform-UAM.DataAccess.Tests.dll
+C:\Users\beluc\Source\Repos\NewRepo\erp\TC.Platform-UAM\TC.Platform-UAM.DataAccess.Tests\obj\Debug\TC.Platform-UAM.DataAccess.Tests.pdb
+C:\Users\beluc\Source\Repos\NewRepo\erp\Vacations\Vacations.DataAccess.Tests\bin\Debug\Vacations.DataAccess.Tests.dll.config
+C:\Users\beluc\Source\Repos\NewRepo\erp\Vacations\Vacations.DataAccess.Tests\bin\Debug\Vacations.DataAccess.Tests.dll
+C:\Users\beluc\Source\Repos\NewRepo\erp\Vacations\Vacations.DataAccess.Tests\bin\Debug\Vacations.DataAccess.Tests.pdb
+C:\Users\beluc\Source\Repos\NewRepo\erp\Vacations\Vacations.DataAccess.Tests\bin\Debug\nunit.framework.dll
+C:\Users\beluc\Source\Repos\NewRepo\erp\Vacations\Vacations.DataAccess.Tests\bin\Debug\Vacations.Business.dll
+C:\Users\beluc\Source\Repos\NewRepo\erp\Vacations\Vacations.DataAccess.Tests\bin\Debug\Vacations.DataAccess.dll
+C:\Users\beluc\Source\Repos\NewRepo\erp\Vacations\Vacations.DataAccess.Tests\bin\Debug\Vacations.Business.pdb
+C:\Users\beluc\Source\Repos\NewRepo\erp\Vacations\Vacations.DataAccess.Tests\bin\Debug\Vacations.DataAccess.pdb
+C:\Users\beluc\Source\Repos\NewRepo\erp\Vacations\Vacations.DataAccess.Tests\bin\Debug\nunit.framework.xml
+C:\Users\beluc\Source\Repos\NewRepo\erp\Vacations\Vacations.DataAccess.Tests\obj\Debug\Vacations.DataAccess.Tests.csprojResolveAssemblyReference.cache
+C:\Users\beluc\Source\Repos\NewRepo\erp\Vacations\Vacations.DataAccess.Tests\obj\Debug\Vacations.DataAccess.Tests.dll
+C:\Users\beluc\Source\Repos\NewRepo\erp\Vacations\Vacations.DataAccess.Tests\obj\Debug\Vacations.DataAccess.Tests.pdb

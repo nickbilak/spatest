@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
+  <metadata>
+    <id>Vacations.Web</id>
+    <version>$version$</version>
+    <authors>Nick Bilak</authors>
+    <owners>Nick Bilak</owners>
+    <description>Vacation Tracking website</description>
+  </metadata>
+</package>
